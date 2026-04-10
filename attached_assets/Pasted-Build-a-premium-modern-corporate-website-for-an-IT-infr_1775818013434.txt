@@ -1,0 +1,93 @@
+Build a premium, modern corporate website for an IT infrastructure and networking company named "Aditya Technology Partners".
+
+🎨 DESIGN STYLE:
+- Minimal, premium, enterprise SaaS style
+- Color palette:
+  - Primary: #FF6B00 (orange accent)
+  - Secondary: #1F2937 (dark grey)
+  - Background: #F9FAFB (light grey/white)
+- Clean typography (use Inter or Poppins)
+- Smooth animations (fade-in, hover effects)
+- Glassmorphism + soft shadows
+- Rounded cards, modern UI
+
+⚡ WEBSITE STRUCTURE:
+
+1. HERO SECTION
+- Heading: "Simplifying IT. Powering Business Growth."
+- Subheading: "Cutting-edge IT infrastructure, networking & security solutions"
+- CTA buttons: "Get Consultation" + "Our Services"
+- Background: gradient + abstract tech illustration
+
+2. ABOUT SECTION
+- Company description:
+  "Aditya Technology Partners delivers end-to-end IT solutions including networking, IP telephony, surveillance, and enterprise infrastructure."
+- Highlight:
+  - 18+ years experience
+  - Multi-industry expertise
+  - Global standards
+
+3. SERVICES SECTION (GRID CARDS)
+Create premium cards with icons:
+- Voice Solutions (IP PBX, IVR, Call Centers)
+- Data Networking (LAN/WAN, MPLS, Security)
+- Video Surveillance (CCTV, Monitoring, ANPR)
+- Infrastructure (Fiber, Cabling)
+- Automation & Security (RFID, Biometric, Smart Systems)
+- IT Consulting & Staffing
+
+Each card should have hover animation.
+
+4. BUSINESS MODEL / VALUE SECTION
+Display as circular or step layout:
+- Innovation with cost effectiveness
+- Cutting-edge technology
+- Reliable & scalable solutions
+- ROI-focused approach
+- Proactive & reactive services
+
+5. INDUSTRIES SERVED
+Create horizontal scroll cards:
+- IT & ITES
+- BPO / Contact Centers
+- Healthcare
+- Education
+- Government
+- Logistics
+- Real Estate
+
+6. CLIENTS / PARTNERS SECTION
+Logo grid (placeholder logos styled in grayscale with hover color effect)
+
+7. WHY CHOOSE US
+- Expertise-driven solutions
+- Customized deployments
+- Strong support & AMC
+- End-to-end execution
+
+8. CONTACT SECTION
+- Email: feedback.atp@live.com
+- Contact form UI
+- Map placeholder
+
+9. FOOTER
+- Minimal, clean
+- Dark theme
+- Social icons
+
+⚙️ TECH REQUIREMENTS:
+- Use React + Tailwind CSS
+- Fully responsive (mobile-first)
+- Use reusable components
+- Add smooth scrolling
+- Add subtle animations using Framer Motion
+
+✨ EXTRA PREMIUM TOUCHES:
+- Animated gradient lines
+- Hover glow effects in orange
+- Sticky navbar with blur effect
+- Section transitions
+
+🎯 GOAL:
+Make it look like a high-end IT consulting company website (similar to Accenture / Cisco / TCS style).
+Focus on trust, scalability, and enterprise feel.
