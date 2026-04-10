@@ -1,127 +1,153 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import { Globe, Users, Trophy, Target } from "lucide-react";
+import { motion } from "framer-motion";
 
-function Counter({ end, suffix = "", duration = 2 }: { end: number, suffix?: string, duration?: number }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const stepTime = Math.abs(Math.floor((duration * 1000) / end));
-      const timer = setInterval(() => {
-        start += 1;
-        setCount(start);
-        if (start === end) {
-          clearInterval(timer);
-        }
-      }, stepTime);
-      return () => clearInterval(timer);
-    }
-  }, [isInView, end, duration]);
-
-  return (
-    <span ref={ref} className="text-4xl md:text-5xl font-bold text-foreground">
-      {count}{suffix}
-    </span>
-  );
-}
+const revealVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-background relative border-t border-border/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
+    <section 
+      id="about" 
+      className="px-[48px] py-[96px] border-b relative box-border"
+      style={{ borderColor: "var(--line)", background: "var(--black)" }}
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-[80px] items-start max-w-[1280px] mx-auto w-full">
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, amount: 0.08 }} 
+          variants={revealVariants}
+        >
+          <div 
+            className="uppercase flex items-center gap-[10px] mb-[12px] before:content-['01']"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "10px",
+              color: "var(--orange)",
+              letterSpacing: "3px",
+            }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6 border border-primary/20">
-              Who We Are
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-              Pioneering Enterprise IT for Over 18 Years
-            </h2>
-            <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
-              <p>
-                Aditya Technology Partners is a premier IT infrastructure and networking solutions provider. We specialize in designing, deploying, and managing mission-critical technology ecosystems for global enterprises.
-              </p>
-              <p>
-                Our passionate team of experienced professionals works tirelessly to deliver end-to-end solutions that align with global standards. We don't just provide technology; we architect competitive advantages that drive business growth across multiple industries.
-              </p>
-            </div>
-            
-            <div className="mt-10 grid grid-cols-2 gap-8">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                    <Trophy className="w-6 h-6" />
-                  </div>
-                  <Counter end={18} suffix="+" />
-                </div>
-                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Years Experience</span>
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                    <Globe className="w-6 h-6" />
-                  </div>
-                  <Counter end={12} suffix="+" />
-                </div>
-                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Industries Served</span>
-              </div>
-            </div>
-          </motion.div>
+            <style>{`
+              #about .before\\:content-\\[\\'01\\'\\]::before {
+                color: var(--muted);
+                font-size: 10px;
+              }
+            `}</style>
+            About
+          </div>
+          
+          <h2 
+            className="mb-[56px] leading-[1]"
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "clamp(40px, 5vw, 64px)",
+              color: "var(--white)",
+              letterSpacing: "0.5px",
+            }}
+          >
+            Built by engineers. Run with passion.
+          </h2>
+          
+          <div 
+            className="font-light leading-[1.9] space-y-[20px]"
+            style={{ fontSize: "15px", color: "var(--mid)" }}
+          >
+            <p className="m-0">
+              Founded in 2004, Aditya Technology Partners (ATP) began with a clear mission: 
+              to simplify the complex world of enterprise IT infrastructure. What started as a 
+              small team of network engineers has grown into a trusted technology partner for 
+              some of India's most prominent organizations.
+            </p>
+            <p className="m-0">
+              We specialize in designing, deploying, and maintaining <strong>mission-critical IP voice, 
+              data, and video networks</strong>. Our approach is fundamentally different — we don't just sell 
+              equipment; we engineer solutions that solve real business problems.
+            </p>
+            <p className="m-0">
+              With deep technical expertise and strong partnerships with global OEM leaders, 
+              we deliver resilient, scalable, and secure infrastructure that empowers your business to thrive.
+            </p>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative"
+          <div 
+            className="mt-[36px] flex items-center gap-[16px] border p-[20px_24px]"
+            style={{ borderColor: "var(--line)" }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-muted">
-              {/* Replace with actual image later, using a solid placeholder with pattern for now */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
-              <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=')]" />
-              
-              <div className="absolute inset-0 flex items-center justify-center p-8">
-                <div className="grid grid-cols-2 gap-4 w-full h-full">
-                  <div className="space-y-4 pt-12">
-                    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 h-40 flex flex-col justify-end">
-                      <Target className="w-8 h-8 text-primary mb-2" />
-                      <span className="text-white font-medium">Global Standards</span>
-                    </div>
-                    <div className="bg-primary/90 backdrop-blur-md border border-white/20 rounded-2xl p-6 h-48 flex flex-col justify-end shadow-lg">
-                      <Users className="w-8 h-8 text-white mb-2" />
-                      <span className="text-white font-medium">Expert Team</span>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="bg-slate-800/80 backdrop-blur-md border border-white/10 rounded-2xl p-6 h-56 flex flex-col justify-end">
-                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                        <Globe className="w-6 h-6 text-primary" />
-                      </div>
-                      <span className="text-white font-medium text-lg">End-to-End Solutions</span>
-                      <p className="text-white/60 text-sm mt-2">From concept to deployment</p>
-                    </div>
-                    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 h-32 flex flex-col justify-end">
-                      <span className="text-white font-medium">Multi-industry</span>
-                    </div>
-                  </div>
+            <div 
+              className="w-[44px] h-[44px] flex-shrink-0 flex items-center justify-center border"
+              style={{
+                background: "var(--orange-lo)",
+                borderColor: "var(--orange-md)",
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "14px",
+                color: "var(--orange)",
+                letterSpacing: "1px",
+              }}
+            >
+              ACSE
+            </div>
+            <div 
+              className="leading-[1.5]"
+              style={{ fontSize: "12px", color: "var(--dim)" }}
+            >
+              <strong className="block font-medium mb-[2px]" style={{ color: "var(--silver)", fontSize: "13px" }}>
+                Certified Engineering Team
+              </strong>
+              Alcatel-Lucent Certified System Experts
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="pt-[8px] flex flex-col gap-0"
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, amount: 0.08 }} 
+          variants={revealVariants}
+        >
+          {[
+            { num: "01", title: "Engineering First", desc: "Our solutions are designed by certified engineers, not sales reps. We build for performance, not just to spec." },
+            { num: "02", title: "Vendor Agnostic", desc: "We partner with the best OEMs, but our loyalty is to the solution. We recommend what works best for your specific use case." },
+            { num: "03", title: "Turnkey Execution", desc: "From physical cabling to logical configuration and ongoing managed services, we own the entire lifecycle." },
+            { num: "04", title: "Uncompromising Quality", desc: "In mission-critical infrastructure, 'good enough' isn't. We adhere strictly to global standards for deployment." }
+          ].map((pillar, i) => (
+            <div 
+              key={i} 
+              className="flex items-start gap-[20px] py-[24px] border-b first:border-t"
+              style={{ borderColor: "var(--line)" }}
+            >
+              <div 
+                className="pt-[3px] min-w-[24px]"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "10px",
+                  color: "var(--muted)",
+                }}
+              >
+                {pillar.num}
+              </div>
+              <div>
+                <div 
+                  className="font-medium mb-[4px]"
+                  style={{
+                    fontSize: "14px",
+                    color: "var(--silver)",
+                    letterSpacing: "0.2px",
+                  }}
+                >
+                  {pillar.title}
+                </div>
+                <div 
+                  className="leading-[1.6]"
+                  style={{ fontSize: "13px", color: "var(--dim)" }}
+                >
+                  {pillar.desc}
                 </div>
               </div>
             </div>
-            
-            {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-2xl -z-10" />
-            <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl -z-10" />
-          </motion.div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

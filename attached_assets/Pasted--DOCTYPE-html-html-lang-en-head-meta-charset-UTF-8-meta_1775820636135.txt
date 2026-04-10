@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Technology Partners — Simplifying IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #080808;
+    --ink: #111111;
+    --panel: #161616;
+    --line: #242424;
+    --muted: #3a3a3a;
+    --dim: #666;
+    --mid: #999;
+    --silver: #ccc;
+    --white: #f5f5f0;
+    --orange: #f7941d;
+    --orange-lo: rgba(247,148,29,0.06);
+    --orange-md: rgba(247,148,29,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--silver);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--orange);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(247,148,29,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.25s, height 0.25s;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--orange); }
+
+  /* NOISE OVERLAY */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 8888;
+    opacity: 0.35;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(8,8,8,0.92);
+    border-color: var(--line);
+    backdrop-filter: blur(16px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+  }
+  .nav-logo-box {
+    width: 34px; height: 34px;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; color: #000;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .nav-wordmark {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--white);
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+  }
+  .nav-wordmark small {
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -2px; left: 0; right: 100%;
+    height: 1px; background: var(--orange);
+    transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--black);
+    background: var(--orange);
+    border: none;
+    padding: 9px 22px;
+    cursor: none;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .nav-btn:hover { opacity: 0.85; }
+
+  /* ── HERO ────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 48px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Angled orange stripe */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 55vw; height: 130vh;
+    background: var(--panel);
+    transform: skewX(-8deg);
+    border-left: 1px solid var(--line);
+    z-index: 0;
+  }
+
+  /* orange vertical accent */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 38%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, var(--orange) 40%, var(--orange) 60%, transparent 100%);
+    opacity: 0.25;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-end;
+    max-width: 1280px;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--orange);
+  }
+
+  h1.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 10vw, 140px);
+    line-height: 0.9;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  h1.hero-title .line2 {
+    color: var(--orange);
+    display: block;
+  }
+  h1.hero-title .line3 {
+    color: var(--line);
+    -webkit-text-stroke: 1px var(--muted);
+    display: block;
+    font-size: clamp(60px, 8vw, 108px);
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--dim);
+    max-width: 360px;
+    line-height: 1.8;
+    margin: 32px 0 40px;
+    font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 14px; align-items: center; }
+  .btn-main {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--orange);
+    color: #000;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 14px 32px;
+    border: none;
+    cursor: none;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s;
+  }
+  .btn-main:hover { transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--mid);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: var(--mid); }
+
+  .hero-right {
+    padding-bottom: 8px;
+  }
+
+  .hero-stat-block {
+    border-left: 1px solid var(--line);
+    padding-left: 32px;
+    margin-bottom: 28px;
+  }
+  .hero-stat-block:last-child { margin-bottom: 0; }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  .hero-stat-num span { color: var(--orange); }
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* scrolling ticker */
+  .ticker-wrap {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+    height: 40px;
+    display: flex; align-items: center;
+    z-index: 2;
+    background: var(--black);
+  }
+  .ticker {
+    display: flex; gap: 0;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 32px;
+    border-right: 1px solid var(--line);
+  }
+  .ticker span.orange { color: var(--orange); }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION BASE ────────────────────────────── */
+  section {
+    padding: 96px 48px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: attr(data-num);
+    color: var(--muted);
+    font-size: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    color: var(--white);
+    letter-spacing: 0.5px;
+    line-height: 1;
+    margin-bottom: 56px;
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+  }
+  .section-header .section-title { margin-bottom: 0; }
+
+  /* ── ABOUT ───────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--mid);
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .about-text p strong { color: var(--silver); font-weight: 500; }
+  .about-cert {
+    margin-top: 36px;
+    border: 1px solid var(--line);
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .cert-badge {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--orange-lo);
+    border: 1px solid var(--orange-md);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px; color: var(--orange);
+    letter-spacing: 1px;
+  }
+  .cert-text { font-size: 12px; color: var(--dim); line-height: 1.5; }
+  .cert-text strong { color: var(--silver); display: block; font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+
+  .about-right { padding-top: 8px; }
+  .about-pillars { display: flex; flex-direction: column; gap: 0; }
+  .pillar {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pillar:first-child { border-top: 1px solid var(--line); }
+  .pillar-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    padding-top: 3px;
+    min-width: 24px;
+  }
+  .pillar-body {}
+  .pillar-title {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--silver);
+    margin-bottom: 4px;
+    letter-spacing: 0.2px;
+  }
+  .pillar-desc { font-size: 13px; color: var(--dim); line-height: 1.6; }
+
+  /* ── SERVICES ────────────────────────────────── */
+  #services { background: var(--ink); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .svc {
+    padding: 36px 32px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .svc:nth-child(3n) { border-right: none; }
+  .svc:hover { background: var(--panel); }
+  .svc::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 100%;
+    height: 2px; background: var(--orange);
+    transition: right 0.4s ease;
+  }
+  .svc:hover::before { right: 0; }
+  .svc-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .svc-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .svc-desc {
+    font-size: 12px;
+    color: var(--dim);
+    line-height: 1.7;
+  }
+  .svc-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 18px;
+  }
+  .svc-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .svc:hover .svc-tag { color: var(--orange); border-color: var(--orange-md); }
+
+  /* ── VERTICALS ───────────────────────────────── */
+  .verticals-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  .vertical {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.3s;
+  }
+  .vertical:hover { padding-left: 12px; }
+  .vertical:nth-child(odd) { padding-right: 48px; border-right: 1px solid var(--line); }
+  .vertical:nth-child(even) { padding-left: 48px; }
+  .vertical:hover:nth-child(even) { padding-left: 60px; }
+  .v-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    min-width: 20px;
+  }
+  .v-line {
+    width: 20px; height: 1px;
+    background: var(--orange);
+    flex-shrink: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .vertical:hover .v-line { transform: scaleX(1); }
+  .v-name {
+    font-size: 14px;
+    color: var(--silver);
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    transition: color 0.2s;
+  }
+  .vertical:hover .v-name { color: var(--white); }
+
+  /* ── CLIENTS ─────────────────────────────────── */
+  #clients { background: var(--ink); }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .client {
+    padding: 30px 20px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .client:nth-child(5n) { border-right: none; }
+  .client:hover { background: var(--panel); }
+  .client-name {
+    font-size: 12px;
+    color: var(--dim);
+    line-height: 1.4;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .client:hover .client-name { color: var(--white); }
+
+  /* ── PARTNERS ────────────────────────────────── */
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .partner {
+    padding: 24px 16px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .partner:nth-child(6n) { border-right: none; }
+  .partner:hover { background: var(--panel); }
+  .partner-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    line-height: 1.5;
+  }
+  .partner:hover .partner-name { color: var(--orange); }
+
+  /* ── CONTACT ─────────────────────────────────── */
+  #contact {
+    background: var(--black);
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    padding: 120px 48px;
+    border-bottom: none;
+  }
+  .contact-pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 100px);
+    color: var(--white);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .contact-title .hollow {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--muted);
+  }
+  .contact-email {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--dim);
+    border: 1px solid var(--line);
+    padding: 12px 28px;
+    margin: 48px 0 32px;
+    cursor: none;
+    transition: color 0.2s, border-color 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .contact-email:hover { color: var(--orange); border-color: var(--orange-md); }
+  .contact-email.copied { color: var(--orange); border-color: var(--orange); }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .footer-right {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: var(--orange);
+    letter-spacing: 3px;
+  }
+
+  /* ── REVEAL ANIMATIONS ───────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-box">ATP</div>
+    <div class="nav-wordmark">
+      Aditya Technology Partners
+      <small>Simplifying IT</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#verticals">Verticals</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-btn">Get in Touch</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">IT Infrastructure Solutions</div>
+      <h1 class="hero-title">
+        Simplifying
+        <span class="line2">IT.</span>
+        <span class="line3">Seriously.</span>
+      </h1>
+      <p class="hero-desc">
+        18+ years building the networks, voice systems, and security infrastructure that India's enterprises run on.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-main">Explore Solutions →</a>
+        <a href="#clients" class="btn-ghost">View Clients</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-block">
+        <div class="hero-stat-num">18<span>+</span></div>
+        <div class="hero-stat-label">Years of experience</div>
+      </div>
+      <div class="hero-stat-block">
+        <div class="hero-stat-num">50<span>+</span></div>
+        <div class="hero-stat-label">Landmark clients</div>
+      </div>
+      <div class="hero-stat-block">
+        <div class="hero-stat-num">10<span>+</span></div>
+        <div class="hero-stat-label">Industries served</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>IP Telephony</span><span class="orange">—</span>
+      <span>Network Security</span><span class="orange">—</span>
+      <span>Video Surveillance</span><span class="orange">—</span>
+      <span>Structured Cabling</span><span class="orange">—</span>
+      <span>Data Centers</span><span class="orange">—</span>
+      <span>Unified Communications</span><span class="orange">—</span>
+      <span>Wireless Networks</span><span class="orange">—</span>
+      <span>Fiber Optics</span><span class="orange">—</span>
+      <span>Fleet Management</span><span class="orange">—</span>
+      <span>IP Telephony</span><span class="orange">—</span>
+      <span>Network Security</span><span class="orange">—</span>
+      <span>Video Surveillance</span><span class="orange">—</span>
+      <span>Structured Cabling</span><span class="orange">—</span>
+      <span>Data Centers</span><span class="orange">—</span>
+      <span>Unified Communications</span><span class="orange">—</span>
+      <span>Wireless Networks</span><span class="orange">—</span>
+      <span>Fiber Optics</span><span class="orange">—</span>
+      <span>Fleet Management</span><span class="orange">—</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label" data-num="01">About</div>
+      <div class="section-title">Built by engineers.<br>Run with passion.</div>
+      <p>
+        Aditya Technology Partners was founded by professionals with over <strong>18 years of hands-on experience</strong> working with the world's top OEMs — delivering complex, end-to-end IT infrastructure solutions across domestic and global markets.
+      </p>
+      <p>
+        We specialise in designing, implementing and managing everything from <strong>basic communication infrastructure and networking</strong> to advanced technologies like IP Telephony, Video Conferencing, Wireless Networks, Video Surveillance, and Network Security.
+      </p>
+      <p>
+        Our deep domain expertise lets us not only meet current requirements — but anticipate the next ones, protecting your investment while you grow.
+      </p>
+      <div class="about-cert">
+        <div class="cert-badge">ACSE</div>
+        <div class="cert-text">
+          <strong>Alcatel-Lucent Certified System Expert</strong>
+          OmniPCX Enterprise Business R10 — D Charan Kumar
+        </div>
+      </div>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-pillars">
+        <div class="pillar">
+          <span class="pillar-num">01</span>
+          <div class="pillar-body">
+            <div class="pillar-title">Innovation with Cost Effectiveness</div>
+            <div class="pillar-desc">NGN cutting-edge technology selected to maximise ROI across CAPEX and OPEX.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">02</span>
+          <div class="pillar-body">
+            <div class="pillar-title">Reliable, Flexible & Scalable</div>
+            <div class="pillar-desc">Platform solutions that grow with your organisation without breaking what works.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">03</span>
+          <div class="pillar-body">
+            <div class="pillar-title">Value Addition on Customer Spend</div>
+            <div class="pillar-desc">Every engagement is measured against tangible business impact and customer potential.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">04</span>
+          <div class="pillar-body">
+            <div class="pillar-title">Proactive & Reactive Approach</div>
+            <div class="pillar-desc">We don't wait for things to break. We monitor, anticipate, and act.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label" data-num="02">Solutions</div>
+      <div class="section-title">What we<br>build & deliver</div>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="svc reveal">
+      <div class="svc-index">01 / 06</div>
+      <div class="svc-title">Voice Solutions</div>
+      <div class="svc-desc">From legacy EPABX to full IP Telephony deployments with unified messaging and call centre infrastructure.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">IP PBX</span>
+        <span class="svc-tag">IVR / NIVR</span>
+        <span class="svc-tag">Call Centres</span>
+        <span class="svc-tag">UC Messaging</span>
+      </div>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-index">02 / 06</div>
+      <div class="svc-title">Data Networking</div>
+      <div class="svc-desc">Core routing and switching, MPLS, Metro Area Networks, wireless infrastructure, and Data Centre builds.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">LAN / WAN</span>
+        <span class="svc-tag">MPLS</span>
+        <span class="svc-tag">Network Security</span>
+        <span class="svc-tag">FTTH</span>
+      </div>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-index">03 / 06</div>
+      <div class="svc-title">Video Surveillance</div>
+      <div class="svc-desc">End-to-end CCTV from legacy analog to wired/wireless IP HD and 4K, ANPR, GPS Fleet and vehicle cameras.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">IP HD / FHD</span>
+        <span class="svc-tag">ANPR</span>
+        <span class="svc-tag">GPS Fleet</span>
+        <span class="svc-tag">Mobile Surveillance</span>
+      </div>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-index">04 / 06</div>
+      <div class="svc-title">Security & Automation</div>
+      <div class="svc-desc">Biometric and RFID access control, boom barriers, BMS, visitor management, and home automation.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Biometric</span>
+        <span class="svc-tag">RFID</span>
+        <span class="svc-tag">BMS</span>
+        <span class="svc-tag">Parking Mgmt</span>
+      </div>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-index">05 / 06</div>
+      <div class="svc-title">Passive Infrastructure</div>
+      <div class="svc-desc">Structured cabling and fiber optic networks designed to carry your communications for the next decade.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Structured Cabling</span>
+        <span class="svc-tag">Fiber Optics</span>
+      </div>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-index">06 / 06</div>
+      <div class="svc-title">Professional Services</div>
+      <div class="svc-desc">Design, deploy, deliver. IT consulting, staffing, EMS, and full project management from brief to handover.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">IT Consulting</span>
+        <span class="svc-tag">IT Staffing</span>
+        <span class="svc-tag">EMS</span>
+        <span class="svc-tag">Project Mgmt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERTICALS -->
+<section id="verticals">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label" data-num="03">Industries</div>
+      <div class="section-title">Who we<br>work with</div>
+    </div>
+  </div>
+  <div class="verticals-list reveal">
+    <div class="vertical"><span class="v-num">01</span><span class="v-line"></span><span class="v-name">Information Technology & ITES</span></div>
+    <div class="vertical"><span class="v-num">02</span><span class="v-line"></span><span class="v-name">BPO & Contact Centres</span></div>
+    <div class="vertical"><span class="v-num">03</span><span class="v-line"></span><span class="v-name">Hospitality & Hotel Industry</span></div>
+    <div class="vertical"><span class="v-num">04</span><span class="v-line"></span><span class="v-name">Education</span></div>
+    <div class="vertical"><span class="v-num">05</span><span class="v-line"></span><span class="v-name">Healthcare & Pharmacy</span></div>
+    <div class="vertical"><span class="v-num">06</span><span class="v-line"></span><span class="v-name">Ports & Cargo Terminals</span></div>
+    <div class="vertical"><span class="v-num">07</span><span class="v-line"></span><span class="v-name">Enterprise, Government & PSU</span></div>
+    <div class="vertical"><span class="v-num">08</span><span class="v-line"></span><span class="v-name">Manufacturing & Logistics</span></div>
+    <div class="vertical"><span class="v-num">09</span><span class="v-line"></span><span class="v-name">Real Estate & Gated Communities</span></div>
+    <div class="vertical"><span class="v-num">10</span><span class="v-line"></span><span class="v-name">Retail & Commercial Spaces</span></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label" data-num="04">Clients</div>
+      <div class="section-title">Landmark<br>customers</div>
+    </div>
+  </div>
+  <div class="clients-grid reveal">
+    <div class="client"><div class="client-name">Visakha Container Terminal</div></div>
+    <div class="client"><div class="client-name">Vizag Seaport Private Ltd</div></div>
+    <div class="client"><div class="client-name">Visakha Container Terminal CFS</div></div>
+    <div class="client"><div class="client-name">LV Prasad Eye Institute</div></div>
+    <div class="client"><div class="client-name">Lansum Estates LLP</div></div>
+    <div class="client"><div class="client-name">Radisson Blu</div></div>
+    <div class="client"><div class="client-name">Tessolve Semiconductor</div></div>
+    <div class="client"><div class="client-name">ALBA</div></div>
+    <div class="client"><div class="client-name">Bothra Group</div></div>
+    <div class="client"><div class="client-name">MK Builders, Visakhapatnam</div></div>
+    <div class="client"><div class="client-name">MVV Builders</div></div>
+    <div class="client"><div class="client-name">GCON</div></div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label" data-num="05">Partners</div>
+      <div class="section-title">Technology<br>ecosystem</div>
+    </div>
+  </div>
+  <div class="partners-grid reveal">
+    <div class="partner"><div class="partner-name">Alcatel-Lucent</div></div>
+    <div class="partner"><div class="partner-name">Cisco</div></div>
+    <div class="partner"><div class="partner-name">HP</div></div>
+    <div class="partner"><div class="partner-name">Axis Communications</div></div>
+    <div class="partner"><div class="partner-name">Legrand</div></div>
+    <div class="partner"><div class="partner-name">Matrix Telecom</div></div>
+    <div class="partner"><div class="partner-name">Stanley Security</div></div>
+    <div class="partner"><div class="partner-name">Grandstream</div></div>
+    <div class="partner"><div class="partner-name">Nexans</div></div>
+    <div class="partner"><div class="partner-name">Milesight</div></div>
+    <div class="partner"><div class="partner-name">Orlaco Camera</div></div>
+    <div class="partner"><div class="partner-name">+ More</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-pre">Get in touch</div>
+  <div class="contact-title">
+    Let's build<br>
+    <span class="hollow">something.</span>
+  </div>
+  <div class="contact-email" id="emailBox" onclick="copyEmail()">
+    feedback.atp@live.com
+  </div>
+  <a href="mailto:feedback.atp@live.com" class="btn-main">Send a Message →</a>
+</section>
+
+<footer>
+  <div class="footer-left">© 2024 Aditya Technology Partners. All rights reserved.</div>
+  <div class="footer-right">Simplifying IT</div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+  function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+
+  // Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Copy email
+  function copyEmail() {
+    navigator.clipboard.writeText('feedback.atp@live.com');
+    const box = document.getElementById('emailBox');
+    box.textContent = 'Copied ✓';
+    box.classList.add('copied');
+    setTimeout(() => { box.textContent = 'feedback.atp@live.com'; box.classList.remove('copied'); }, 2000);
+  }
+</script>
+</body>
+</html>

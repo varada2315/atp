@@ -1,114 +1,168 @@
 import { motion } from "framer-motion";
-import { PhoneCall, Network, Video, Server, ShieldCheck, UserCog } from "lucide-react";
+
+const revealVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
 
 const services = [
   {
+    idx: "01 / 06",
     title: "Voice Solutions",
-    description: "Enterprise-grade IP PBX, IVR systems, and Call Center infrastructure designed for crystal-clear communication and reliability.",
-    icon: PhoneCall,
+    description: "Enterprise IP telephony, unified communications, and contact center solutions. We design robust voice networks that ensure seamless collaboration across your organization.",
+    tags: ["IP PBX", "Unified Comms", "Contact Center"]
   },
   {
+    idx: "02 / 06",
     title: "Data Networking",
-    description: "Robust LAN/WAN architectures, MPLS networks, and advanced security protocols to keep your business connected and protected.",
-    icon: Network,
+    description: "Scalable, high-performance LAN and WAN architectures. From core routing to edge switching, we build networks that handle massive data loads without compromising speed.",
+    tags: ["Routing", "Switching", "SD-WAN"]
   },
   {
+    idx: "03 / 06",
     title: "Video Surveillance",
-    description: "State-of-the-art CCTV, ANPR, and intelligent monitoring systems for comprehensive physical security.",
-    icon: Video,
+    description: "Advanced IP CCTV and intelligent video analytics. Protect your assets with high-definition surveillance systems integrated with centralized monitoring.",
+    tags: ["IP CCTV", "Analytics", "NVR/VMS"]
   },
   {
-    title: "Infrastructure",
-    description: "High-performance structured cabling and fiber optic networks providing the backbone for modern digital enterprises.",
-    icon: Server,
+    idx: "04 / 06",
+    title: "Security & Automation",
+    description: "Comprehensive physical security and building automation. We integrate access control, biometrics, and alarm systems for total environmental control.",
+    tags: ["Access Control", "Biometrics", "Automation"]
   },
   {
-    title: "Automation & Security",
-    description: "Smart systems including RFID, biometric access control, and integrated building automation.",
-    icon: ShieldCheck,
+    idx: "05 / 06",
+    title: "Passive Infrastructure",
+    description: "The physical foundation of your IT. We provide expert structured cabling, fiber optic deployments, and data center physical infrastructure.",
+    tags: ["Structured Cabling", "Fiber Optics", "Racks"]
   },
   {
-    title: "IT Consulting",
-    description: "Strategic advisory and IT staffing services to align your technology investments with business objectives.",
-    icon: UserCog,
+    idx: "06 / 06",
+    title: "Professional Services",
+    description: "Beyond deployment, we offer ongoing managed services, annual maintenance contracts (AMC), and expert IT consulting to keep your operations flawless.",
+    tags: ["Managed Services", "AMC", "Consulting"]
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 }
-  },
-};
-
 export function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-muted/30 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
-          <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6 border border-primary/20">
-            Our Expertise
+    <section 
+      id="services" 
+      className="px-[48px] py-[96px] border-b relative box-border"
+      style={{ borderColor: "var(--line)", background: "var(--ink)" }}
+    >
+      <div className="max-w-[1280px] mx-auto w-full">
+        <motion.div 
+          className="flex items-end justify-between mb-[56px]"
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, amount: 0.08 }} 
+          variants={revealVariants}
+        >
+          <div>
+            <div 
+              className="uppercase flex items-center gap-[10px] mb-[12px] before:content-['02']"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "10px",
+                color: "var(--orange)",
+                letterSpacing: "3px",
+              }}
+            >
+              <style>{`
+                #services .before\\:content-\\[\\'02\\'\\]::before {
+                  color: var(--muted);
+                  font-size: 10px;
+                }
+              `}</style>
+              Capabilities
+            </div>
+            
+            <h2 
+              className="m-0 leading-[1]"
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(40px, 5vw, 64px)",
+                color: "var(--white)",
+                letterSpacing: "0.5px",
+              }}
+            >
+              Our Solutions
+            </h2>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-            Comprehensive IT Solutions
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            We provide end-to-end technology solutions tailored to modernize your operations, enhance security, and drive unprecedented efficiency.
-          </p>
-        </div>
+        </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, amount: 0.08 }} 
+          variants={revealVariants}
         >
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              className="group relative bg-card border border-border rounded-2xl p-8 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-2 min-h-[280px] flex flex-col overflow-hidden"
-              data-testid={`card-service-${index}`}
+          {services.map((svc, i) => (
+            <div 
+              key={i} 
+              className="relative overflow-hidden p-[36px_32px] border-b border-r transition-colors duration-300 hover:bg-[var(--panel)] group"
+              style={{ borderColor: "var(--line)" }}
             >
               {/* Top border highlight on hover */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Background glow on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <service.icon className="w-8 h-8" />
-                </div>
-                
-                <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </h3>
-                
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
+              <div 
+                className="absolute top-0 left-0 h-[2px] transition-[right] duration-400 ease-in-out group-hover:right-0 right-[100%]" 
+                style={{ background: "var(--orange)" }}
+              />
+
+              <div 
+                className="mb-[20px]"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "10px",
+                  color: "var(--muted)",
+                  letterSpacing: "1px",
+                }}
+              >
+                {svc.idx}
               </div>
-            </motion.div>
+
+              <h3 
+                className="mb-[10px] leading-[1.1]"
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "22px",
+                  color: "var(--white)",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                {svc.title}
+              </h3>
+
+              <div 
+                className="leading-[1.7]"
+                style={{ fontSize: "12px", color: "var(--dim)" }}
+              >
+                {svc.description}
+              </div>
+
+              <div className="flex flex-wrap gap-[6px] mt-[18px]">
+                {svc.tags.map((tag, j) => (
+                  <div 
+                    key={j}
+                    className="border px-[8px] py-[3px] transition-colors duration-200 group-hover:text-[var(--orange)] group-hover:border-[var(--orange-md)]"
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "9px",
+                      color: "var(--muted)",
+                      borderColor: "var(--line)",
+                      letterSpacing: "0.5px",
+                    }}
+                  >
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            </div>
           ))}
         </motion.div>
       </div>
-      
-      {/* Decorative gradient line */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
     </section>
   );
 }

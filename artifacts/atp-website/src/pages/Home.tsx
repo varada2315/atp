@@ -3,27 +3,27 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
-import { BusinessModel } from "@/components/sections/BusinessModel";
-import { Industries } from "@/components/sections/Industries";
+import { Verticals } from "@/components/sections/Verticals";
+import { Clients } from "@/components/sections/Clients";
 import { Partners } from "@/components/sections/Partners";
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Contact } from "@/components/sections/Contact";
+import { CustomCursor } from "@/components/CustomCursor";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-white flex flex-col font-sans">
+    <>
+      <CustomCursor />
       <Navbar />
-      <main className="flex-grow">
+      <main>
         <Hero />
-        <Partners />
         <About />
         <Services />
-        <BusinessModel />
-        <Industries />
-        <WhyChooseUs />
+        <Verticals />
+        <Clients />
+        <Partners />
         <Contact />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
