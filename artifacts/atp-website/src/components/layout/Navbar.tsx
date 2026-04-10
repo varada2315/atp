@@ -41,12 +41,6 @@ export function Navbar() {
           }}
         >
           Aditya Technology Partners
-          <small
-            className="block text-[10px] font-light uppercase mt-[1px]"
-            style={{ color: "var(--dim)", letterSpacing: "2px" }}
-          >
-            Simplifying IT
-          </small>
         </div>
       </Link>
       

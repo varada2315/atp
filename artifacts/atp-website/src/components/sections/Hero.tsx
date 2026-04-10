@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import heroBg from "@/assets/hero-datacenter.png";
 
 export function Hero() {
   return (
@@ -9,15 +10,23 @@ export function Hero() {
       }}
     >
       <div 
-        className="absolute w-[55vw] h-[130vh] border-l z-0"
+        className="absolute w-[55vw] h-[130vh] border-l z-0 overflow-hidden"
         style={{
           top: "-10%",
           right: "-5%",
-          background: "var(--panel)",
           transform: "skewX(-8deg)",
           borderColor: "var(--line)",
         }}
-      />
+      >
+        <img
+          src={heroBg}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover"
+          style={{ opacity: 0.18, transform: "skewX(8deg) scale(1.15)" }}
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, var(--panel) 0%, transparent 60%)" }} />
+      </div>
       <div 
         className="absolute top-0 h-full w-[1px] z-[1]"
         style={{

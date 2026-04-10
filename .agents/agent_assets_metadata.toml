@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "waRv2KuDfTed-uzi4Zrq1"
+uri = "file://artifacts/atp-website/src/assets/hero-datacenter.png"
+type = "image"
+title = "dark server room hero"
+
+[[generated]]
+id = "WieyxPWPNIRjlTZHYV0f7"
+uri = "file://artifacts/atp-website/src/assets/about-noc.png"
+type = "image"
+title = "network operations center about"
+
+[[generated]]
+id = "R7DEDL2QcL4XT1GXwcF0H"
+uri = "file://artifacts/atp-website/src/assets/services-fiber.png"
+type = "image"
+title = "fiber optic cables dark"

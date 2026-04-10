@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import nocImage from "@/assets/about-noc.png";
 
 const revealVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -149,6 +150,62 @@ export function About() {
           ))}
         </motion.div>
       </div>
+
+      {/* Full-width cinematic image strip */}
+      <motion.div
+        className="mt-[80px] max-w-[1280px] mx-auto w-full relative overflow-hidden"
+        style={{ height: "280px" }}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <img
+          src={nocImage}
+          alt="Network Operations Center"
+          className="w-full h-full object-cover"
+          style={{ opacity: 0.55 }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to right, var(--black) 0%, transparent 30%, transparent 70%, var(--black) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, var(--black) 0%, transparent 25%, transparent 75%, var(--black) 100%)",
+          }}
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <div
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "10px",
+                color: "var(--orange)",
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                marginBottom: "12px",
+              }}
+            >
+              Since 2006
+            </div>
+            <div
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(32px, 4vw, 52px)",
+                color: "var(--white)",
+                letterSpacing: "1px",
+                lineHeight: 1,
+              }}
+            >
+              18+ Years. Zero Compromises.
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

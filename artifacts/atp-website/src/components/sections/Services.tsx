@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import fiberImage from "@/assets/services-fiber.png";
 
 const revealVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -89,6 +90,31 @@ export function Services() {
             >
               Our Solutions
             </h2>
+          </div>
+        </motion.div>
+
+        {/* Fiber image accent */}
+        <motion.div
+          className="mb-[56px] relative overflow-hidden"
+          style={{ height: "120px" }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <img
+            src={fiberImage}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.35 }}
+          />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, var(--ink) 0%, transparent 20%, transparent 80%, var(--ink) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, var(--ink) 0%, transparent 40%, transparent 60%, var(--ink) 100%)" }} />
+          <div className="absolute inset-0 flex items-center px-[48px]">
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "var(--orange)", letterSpacing: "3px", textTransform: "uppercase" }}>
+              End-to-end · Design · Deploy · Deliver
+            </div>
           </div>
         </motion.div>
 
