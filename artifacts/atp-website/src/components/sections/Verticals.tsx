@@ -6,14 +6,14 @@ const revealVariants = {
 };
 
 const verticals = [
-  { num: "01", name: "Corporate & Enterprise" },
-  { num: "02", name: "Healthcare & Hospitals" },
-  { num: "03", name: "Education & Universities" },
-  { num: "04", name: "Hospitality & Hotels" },
-  { num: "05", name: "Manufacturing & Industrial" },
-  { num: "06", name: "Government & Public Sector" },
-  { num: "07", name: "Ports & Logistics" },
-  { num: "08", name: "Real Estate & Construction" },
+  { name: "Corporate & Enterprise" },
+  { name: "Healthcare & Hospitals" },
+  { name: "Education & Universities" },
+  { name: "Hospitality & Hotels" },
+  { name: "Manufacturing & Industrial" },
+  { name: "Government & Public Sector" },
+  { name: "Ports & Logistics" },
+  { name: "Real Estate & Construction" },
 ];
 
 export function Verticals() {
@@ -84,15 +84,9 @@ export function Verticals() {
                   borderRight: isOdd ? "1px solid var(--line)" : "none",
                 }}
               >
-                <div 
+                <div
                   className="min-w-[20px]"
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "9px",
-                    color: "var(--muted)",
-                  }}
                 >
-                  {v.num}
                 </div>
                 <div 
                   className="w-[20px] h-[1px] flex-shrink-0 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"

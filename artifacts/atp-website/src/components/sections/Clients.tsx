@@ -36,8 +36,8 @@ export function Clients() {
           variants={revealVariants}
         >
           <div>
-            <div 
-              className="uppercase flex items-center gap-[10px] mb-[12px] before:content-['04']"
+            <div
+              className="uppercase flex items-center gap-[10px] mb-[12px]"
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "10px",
@@ -45,12 +45,6 @@ export function Clients() {
                 letterSpacing: "3px",
               }}
             >
-              <style>{`
-                #clients .before\\:content-\\[\\'04\\'\\]::before {
-                  color: var(--muted);
-                  font-size: 10px;
-                }
-              `}</style>
               Trust
             </div>
             

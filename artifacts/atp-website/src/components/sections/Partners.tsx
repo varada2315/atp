@@ -36,8 +36,8 @@ export function Partners() {
           variants={revealVariants}
         >
           <div>
-            <div 
-              className="uppercase flex items-center gap-[10px] mb-[12px] before:content-['05']"
+            <div
+              className="uppercase flex items-center gap-[10px] mb-[12px]"
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "10px",
@@ -45,12 +45,6 @@ export function Partners() {
                 letterSpacing: "3px",
               }}
             >
-              <style>{`
-                #partners .before\\:content-\\[\\'05\\'\\]::before {
-                  color: var(--muted);
-                  font-size: 10px;
-                }
-              `}</style>
               Alliances
             </div>
             

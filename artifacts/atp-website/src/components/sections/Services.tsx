@@ -8,37 +8,31 @@ const revealVariants = {
 
 const services = [
   {
-    idx: "01 / 06",
     title: "Voice Solutions",
     description: "Enterprise IP telephony, unified communications, and contact center solutions. We design robust voice networks that ensure seamless collaboration across your organization.",
     tags: ["IP PBX", "Unified Comms", "Contact Center"]
   },
   {
-    idx: "02 / 06",
     title: "Data Networking",
     description: "Scalable, high-performance LAN and WAN architectures. From core routing to edge switching, we build networks that handle massive data loads without compromising speed.",
     tags: ["Routing", "Switching", "SD-WAN"]
   },
   {
-    idx: "03 / 06",
     title: "Video Surveillance",
     description: "Advanced IP CCTV and intelligent video analytics. Protect your assets with high-definition surveillance systems integrated with centralized monitoring.",
     tags: ["IP CCTV", "Analytics", "NVR/VMS"]
   },
   {
-    idx: "04 / 06",
     title: "Security & Automation",
     description: "Comprehensive physical security and building automation. We integrate access control, biometrics, and alarm systems for total environmental control.",
     tags: ["Access Control", "Biometrics", "Automation"]
   },
   {
-    idx: "05 / 06",
     title: "Passive Infrastructure",
     description: "The physical foundation of your IT. We provide expert structured cabling, fiber optic deployments, and data center physical infrastructure.",
     tags: ["Structured Cabling", "Fiber Optics", "Racks"]
   },
   {
-    idx: "06 / 06",
     title: "Professional Services",
     description: "Beyond deployment, we offer ongoing managed services, annual maintenance contracts (AMC), and expert IT consulting to keep your operations flawless.",
     tags: ["Managed Services", "AMC", "Consulting"]
@@ -146,7 +140,6 @@ export function Services() {
                   letterSpacing: "1px",
                 }}
               >
-                {svc.idx}
               </div>
 
               <h3 
@@ -170,15 +163,16 @@ export function Services() {
 
               <div className="flex flex-wrap gap-[6px] mt-[18px]">
                 {svc.tags.map((tag, j) => (
-                  <div 
+                  <div
                     key={j}
                     className="border px-[8px] py-[3px] transition-colors duration-200 group-hover:text-[var(--orange)] group-hover:border-[var(--orange-md)]"
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "9px",
-                      color: "var(--muted)",
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      fontSize: "12px",
+                      color: "var(--white)",
                       borderColor: "var(--line)",
                       letterSpacing: "0.5px",
+                      fontWeight: 400
                     }}
                   >
                     {tag}

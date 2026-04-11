@@ -95,7 +95,6 @@ export function About() {
               <strong className="block font-medium mb-[2px]" style={{ color: "var(--silver)", fontSize: "13px" }}>
                 Certified Engineering Team
               </strong>
-              Alcatel-Lucent Certified System Experts
             </div>
           </div>
         </motion.div>
@@ -108,17 +107,17 @@ export function About() {
           variants={revealVariants}
         >
           {[
-            { num: "01", title: "Engineering First", desc: "Our solutions are designed by certified engineers, not sales reps. We build for performance, not just to spec." },
-            { num: "02", title: "Vendor Agnostic", desc: "We partner with the best OEMs, but our loyalty is to the solution. We recommend what works best for your specific use case." },
-            { num: "03", title: "Turnkey Execution", desc: "From physical cabling to logical configuration and ongoing managed services, we own the entire lifecycle." },
-            { num: "04", title: "Uncompromising Quality", desc: "In mission-critical infrastructure, 'good enough' isn't. We adhere strictly to global standards for deployment." }
+            { title: "Engineering First", desc: "Our solutions are designed by certified engineers, not sales reps. We build for performance, not just to spec." },
+            { title: "Vendor Agnostic", desc: "We partner with the best OEMs, but our loyalty is to the solution. We recommend what works best for your specific use case." },
+            { title: "Turnkey Execution", desc: "From physical cabling to logical configuration and ongoing managed services, we own the entire lifecycle." },
+            { title: "Uncompromising Quality", desc: "In mission-critical infrastructure, 'good enough' isn't. We adhere strictly to global standards for deployment." }
           ].map((pillar, i) => (
             <div 
               key={i} 
               className="flex items-start gap-[20px] py-[24px] border-b first:border-t"
               style={{ borderColor: "var(--line)" }}
             >
-              <div 
+              <div
                 className="pt-[3px] min-w-[24px]"
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
@@ -126,7 +125,7 @@ export function About() {
                   color: "var(--muted)",
                 }}
               >
-                {pillar.num}
+                •
               </div>
               <div>
                 <div 
@@ -201,7 +200,7 @@ export function About() {
                 lineHeight: 1,
               }}
             >
-              18+ Years. Zero Compromises.
+              29 Years of experience. Zero Compromises.
             </div>
           </div>
         </div>

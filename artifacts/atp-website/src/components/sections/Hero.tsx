@@ -80,7 +80,7 @@ export function Hero() {
               color: "var(--dim)",
             }}
           >
-            18+ years building the networks, voice systems, and security infrastructure that India's enterprises run on.
+            With 29 years of expertise, we design and implement robust IT infrastructure solutions that power India's leading enterprises.
           </p>
 
           <div className="flex items-center gap-[14px]">
@@ -119,9 +119,9 @@ export function Hero() {
 
         <div className="pb-[8px] hidden md:block">
           {[
-            { num: "18", plus: "+", label: "Years of experience" },
-            { num: "50", plus: "+", label: "Landmark clients" },
-            { num: "10", plus: "+", label: "Industries served" },
+            { num: "29", plus: "", label: "Years of experience" },
+            { num: "150", plus: "+", label: "Clients" },
+            { num: "20", plus: "+", label: "Industries" },
           ].map((stat, i) => (
             <div 
               key={i} 
@@ -139,13 +139,14 @@ export function Hero() {
               >
                 {stat.num}<span style={{ color: "var(--orange)" }}>{stat.plus}</span>
               </div>
-              <div 
+              <div
                 className="uppercase mt-[2px]"
                 style={{
-                  fontSize: "11px",
-                  color: "var(--dim)",
+                  fontSize: "14px",
+                  color: "var(--white)",
                   letterSpacing: "1.5px",
                   fontFamily: "'JetBrains Mono', monospace",
+                  fontWeight: 500
                 }}
               >
                 {stat.label}
