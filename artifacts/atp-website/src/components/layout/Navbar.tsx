@@ -22,20 +22,10 @@ export function Navbar() {
     >
       <Link href="/" className="flex items-center gap-[14px] no-underline">
         <img
-          src="/AdityaTechnologyPartnerslogodesign.png"
+          src="/WhatsApp_Image_2026-04-11_at_5.33.01_PM-removebg-preview.png"
           alt="Aditya Technology Partners Logo"
-          className="w-[34px] h-[34px] flex-shrink-0"
+          className="w-[272px] h-[272px] flex-shrink-0"
         />
-        <div
-          className="font-medium text-[13px] leading-[1.2]"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            color: "var(--white)",
-            letterSpacing: "0.2px",
-          }}
-        >
-          Aditya Technology Partners
-        </div>
       </Link>
       
       <ul className="flex items-center gap-[36px] list-none m-0 p-0">
