@@ -21,17 +21,11 @@ export function Navbar() {
       }`}
     >
       <Link href="/" className="flex items-center gap-[14px] no-underline">
-        <div
-          className="w-[34px] h-[34px] flex items-center justify-center text-[#000] flex-shrink-0"
-          style={{
-            background: "var(--orange)",
-            fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: "16px",
-            letterSpacing: "1px",
-          }}
-        >
-          ATP
-        </div>
+        <img
+          src="/AdityaTechnologyPartnerslogodesign.png"
+          alt="Aditya Technology Partners Logo"
+          className="w-[34px] h-[34px] flex-shrink-0"
+        />
         <div
           className="font-medium text-[13px] leading-[1.2]"
           style={{
