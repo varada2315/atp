@@ -9,17 +9,18 @@ const revealVariants = {
 type Partner = {
   name: string;
   logo?: string;
+  scale?: number;
 };
 
 const partners: Partner[] = [
   { name: "Alcatel-Lucent Enterprise", logo: "/client-logos/ale-logo.png" },
-  { name: "Cisco", logo: "/client-logos/Screenshot 2026-04-30 at 4.22.59 PM.png" },
+  { name: "Cisco", logo: "/client-logos/Screenshot 2026-04-30 at 4.22.59 PM.png", scale: 1.4 },
   { name: "HPE", logo: "/client-logos/Hewlett_Packard_Enterprise_logo.svg.png" },
-  { name: "Axis Communications", logo: "/client-logos/kisspng-axis-communications-ip-camera-closed-circuit-telev-5b1728a598cb71.4382274315282443896259 copy.jpg" },
-  { name: "Legrand", logo: "https://logo.clearbit.com/legrand.com" },
-  { name: "Matrix Comsec", logo: "/client-logos/Matrix_icon-removebg-preview.png" },
-  { name: "Stanley Security", logo: "/client-logos/stanley_security_solutions_logo.jpeg" },
-  { name: "Grandstream", logo: "/client-logos/grandstream-removebg-preview.png" },
+  { name: "Axis Communications", logo: "/client-logos/kisspng-axis-communications-ip-camera-closed-circuit-telev-5b1728a598cb71.4382274315282443896259 copy.jpg", scale: 1.5 },
+  { name: "Legrand", logo: "/client-logos/legrand-vector-logo-free-115742035107slt3m2hpz-removebg-preview.png", scale: 1.6 },
+  { name: "Matrix Comsec", logo: "/client-logos/Matrix_icon-removebg-preview.png", scale: 1.3 },
+  { name: "Stanley Security", logo: "/client-logos/stanley_security_solutions_logo.jpeg", scale: 1.4 },
+  { name: "Grandstream", logo: "/client-logos/grandstream-removebg-preview.png", scale: 1.3 },
   { name: "Nexans", logo: "/client-logos/159-1595269_nexans-logo-removebg-preview.png" },
   { name: "Milesight", logo: "/client-logos/Milesight-Logo-Vector.svg-.png" },
   { name: "Orlaco", logo: "/client-logos/Orlaco_logo_300dpi.png" },
@@ -94,7 +95,8 @@ export function Partners() {
                     src={p.logo}
                     alt={`${p.name} logo`}
                     loading="lazy"
-                    className="max-h-[44px] w-auto max-w-full object-contain"
+                    className="max-h-[52px] w-auto max-w-full object-contain"
+                    style={{ transform: p.scale ? `scale(${p.scale})` : 'none' }}
                     onError={() =>
                       setBrokenLogos((current) => ({ ...current, [p.name]: true }))
                     }
