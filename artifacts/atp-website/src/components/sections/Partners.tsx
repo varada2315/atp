@@ -12,17 +12,17 @@ type Partner = {
 };
 
 const partners: Partner[] = [
-  { name: "Alcatel-Lucent Enterprise", logo: "https://logo.clearbit.com/al-enterprise.com" },
-  { name: "Cisco", logo: "https://logo.clearbit.com/cisco.com" },
-  { name: "HPE", logo: "https://logo.clearbit.com/hpe.com" },
-  { name: "Axis Communications", logo: "https://logo.clearbit.com/axis.com" },
+  { name: "Alcatel-Lucent Enterprise", logo: "/client-logos/ale-logo.png" },
+  { name: "Cisco", logo: "/client-logos/Screenshot 2026-04-30 at 4.22.59 PM.png" },
+  { name: "HPE", logo: "/client-logos/Hewlett_Packard_Enterprise_logo.svg.png" },
+  { name: "Axis Communications", logo: "/client-logos/kisspng-axis-communications-ip-camera-closed-circuit-telev-5b1728a598cb71.4382274315282443896259 copy.jpg" },
   { name: "Legrand", logo: "https://logo.clearbit.com/legrand.com" },
-  { name: "Matrix Comsec", logo: "https://logo.clearbit.com/matrixcomsec.com" },
-  { name: "Stanley Security", logo: "https://logo.clearbit.com/stanleyblackanddecker.com" },
-  { name: "Grandstream", logo: "https://logo.clearbit.com/grandstream.com" },
-  { name: "Nexans", logo: "https://logo.clearbit.com/nexans.com" },
-  { name: "Milesight", logo: "https://logo.clearbit.com/milesight.com" },
-  { name: "Orlaco", logo: "https://logo.clearbit.com/orlaco.com" },
+  { name: "Matrix Comsec", logo: "/client-logos/Matrix_icon-removebg-preview.png" },
+  { name: "Stanley Security", logo: "/client-logos/stanley_security_solutions_logo.jpeg" },
+  { name: "Grandstream", logo: "/client-logos/grandstream-removebg-preview.png" },
+  { name: "Nexans", logo: "/client-logos/159-1595269_nexans-logo-removebg-preview.png" },
+  { name: "Milesight", logo: "/client-logos/Milesight-Logo-Vector.svg-.png" },
+  { name: "Orlaco", logo: "/client-logos/Orlaco_logo_300dpi.png" },
 ];
 
 export function Partners() {
