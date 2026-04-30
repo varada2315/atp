@@ -20,12 +20,18 @@ export function Navbar() {
           : "bg-transparent border-transparent"
       }`}
     >
-      <Link href="/" className="flex items-center gap-[14px] no-underline">
-        <img
-          src="/WhatsApp_Image_2026-04-11_at_5.33.01_PM-removebg-preview.png"
-          alt="Aditya Technology Partners Logo"
-          className="h-[48px] w-auto flex-shrink-0 object-contain"
-        />
+      <Link href="/" className="no-underline">
+        <div className="relative group">
+          <div className="absolute inset-0 bg-[var(--orange)] opacity-20 blur-[12px] rounded-full scale-0 group-hover:scale-110 transition-transform duration-500" />
+          <div className="relative h-[42px] w-[42px] flex items-center justify-center bg-gradient-to-br from-[rgba(255,255,255,0.08)] to-transparent border border-[rgba(255,255,255,0.12)] rounded-[10px] overflow-hidden backdrop-blur-[8px] shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+            <img
+              src="/WhatsApp_Image_2026-04-11_at_5.33.01_PM-removebg-preview.png"
+              alt="ATP Icon"
+              className="h-[150%] w-auto max-w-none object-contain"
+              style={{ transform: "translateX(-2px)" }}
+            />
+          </div>
+        </div>
       </Link>
       
       <ul className="flex items-center gap-[36px] list-none m-0 p-0">

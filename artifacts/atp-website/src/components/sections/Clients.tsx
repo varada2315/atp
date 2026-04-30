@@ -9,6 +9,7 @@ const revealVariants = {
 type Client = {
   name: string;
   logo?: string;
+  bg?: string;
 };
 
 const clients: Client[] = [
@@ -22,7 +23,7 @@ const clients: Client[] = [
   { name: "ALBA", logo: "/client-logos/alba.png" },
   { name: "Bothra Group", logo: "/client-logos/bothra-group.png" },
   { name: "Imperial Developers", logo: "/client-logos/imperial-developers.png" },
-  { name: "MVV Builders", logo: "/client-logos/mvv-builders.png" },
+  { name: "MVV Builders", logo: "/client-logos/mvv-builders.png", bg: "var(--black)" },
   { name: "GCON Group", logo: "/client-logos/gcon.png" },
 ];
 
@@ -87,7 +88,7 @@ export function Clients() {
                 className="h-[72px] rounded-[10px] border flex items-center justify-center p-[10px] mb-[12px]"
                 style={{
                   borderColor: "var(--line)",
-                  background: "rgba(255, 255, 255, 0.96)",
+                  background: c.bg || "rgba(255, 255, 255, 0.96)",
                 }}
               >
                 {c.logo && !brokenLogos[c.name] ? (
