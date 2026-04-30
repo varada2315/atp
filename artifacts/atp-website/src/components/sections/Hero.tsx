@@ -69,7 +69,7 @@ export function Hero() {
                 fontSize: "clamp(60px, 8vw, 108px)",
               }}
             >
-              Seriously.
+              Reliably.
             </span>
           </h1>
 
@@ -80,7 +80,7 @@ export function Hero() {
               color: "var(--dim)",
             }}
           >
-            With 29 years of expertise, we design and implement robust IT infrastructure solutions that power India's leading enterprises.
+            With 14 years of expertise, we design and implement robust IT infrastructure solutions that power India's leading enterprises.
           </p>
 
           <div className="flex items-center gap-[14px]">
@@ -95,7 +95,6 @@ export function Hero() {
                 fontSize: "13px",
                 padding: "14px 32px",
                 letterSpacing: "0.3px",
-                cursor: "none",
               }}
             >
               Explore Solutions →
@@ -109,7 +108,6 @@ export function Hero() {
                 fontSize: "11px",
                 letterSpacing: "1px",
                 borderColor: "var(--line)",
-                cursor: "none",
               }}
             >
               View Clients
@@ -119,7 +117,7 @@ export function Hero() {
 
         <div className="pb-[8px] hidden md:block">
           {[
-            { num: "29", plus: "", label: "Years of experience" },
+            { num: "14", plus: "", label: "Years of experience" },
             { num: "150", plus: "+", label: "Clients" },
             { num: "20", plus: "+", label: "Industries" },
           ].map((stat, i) => (

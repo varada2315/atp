@@ -15,7 +15,7 @@ export function Footer() {
           letterSpacing: "1px",
         }}
       >
-        © 2014 Aditya Technology Partners. All rights reserved.
+        © 2012 Aditya Technology Partners. All rights reserved.
       </div>
       
       <div 

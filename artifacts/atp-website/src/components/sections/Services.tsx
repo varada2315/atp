@@ -1,4 +1,12 @@
 import { motion } from "framer-motion";
+import { 
+  PhoneCall, 
+  Network, 
+  Video, 
+  ShieldCheck, 
+  Cable, 
+  Briefcase 
+} from "lucide-react";
 import fiberImage from "@/assets/services-fiber.png";
 
 const revealVariants = {
@@ -10,32 +18,38 @@ const services = [
   {
     title: "Voice Solutions",
     description: "Enterprise IP telephony, unified communications, and contact center solutions. We design robust voice networks that ensure seamless collaboration across your organization.",
-    tags: ["IP PBX", "Unified Comms", "Contact Center"]
+    tags: ["IP PBX", "Unified Comms", "Contact Center"],
+    icon: PhoneCall
   },
   {
     title: "Data Networking",
     description: "Scalable, high-performance LAN and WAN architectures. From core routing to edge switching, we build networks that handle massive data loads without compromising speed.",
-    tags: ["Routing", "Switching", "SD-WAN"]
+    tags: ["Routing", "Switching", "SD-WAN"],
+    icon: Network
   },
   {
     title: "Video Surveillance",
     description: "Advanced IP CCTV and intelligent video analytics. Protect your assets with high-definition surveillance systems integrated with centralized monitoring.",
-    tags: ["IP CCTV", "Analytics", "NVR/VMS"]
+    tags: ["IP CCTV", "Analytics", "NVR/VMS"],
+    icon: Video
   },
   {
     title: "Security & Automation",
     description: "Comprehensive physical security and building automation. We integrate access control, biometrics, and alarm systems for total environmental control.",
-    tags: ["Access Control", "Biometrics", "Automation"]
+    tags: ["Access Control", "Biometrics", "Automation", "Home Automation"],
+    icon: ShieldCheck
   },
   {
     title: "Passive Infrastructure",
     description: "The physical foundation of your IT. We provide expert structured cabling, fiber optic deployments, and data center physical infrastructure.",
-    tags: ["Structured Cabling", "Fiber Optics", "Racks"]
+    tags: ["Structured Cabling", "Fiber Optics", "Racks", "FTTH"],
+    icon: Cable
   },
   {
     title: "Professional Services",
     description: "Beyond deployment, we offer ongoing managed services, annual maintenance contracts (AMC), and expert IT consulting to keep your operations flawless.",
-    tags: ["Managed Services", "AMC", "Consulting"]
+    tags: ["Managed Services", "AMC", "Consulting"],
+    icon: Briefcase
   }
 ];
 
@@ -140,6 +154,7 @@ export function Services() {
                   letterSpacing: "1px",
                 }}
               >
+                <svc.icon size={28} className="text-[var(--orange)] mb-[16px] opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
               </div>
 
               <h3 

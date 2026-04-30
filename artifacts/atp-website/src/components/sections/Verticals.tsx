@@ -1,4 +1,14 @@
 import { motion } from "framer-motion";
+import { 
+  Building2, 
+  Hospital, 
+  GraduationCap, 
+  Hotel, 
+  Factory, 
+  Landmark, 
+  Ship, 
+  HardHat 
+} from "lucide-react";
 
 const revealVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -6,14 +16,14 @@ const revealVariants = {
 };
 
 const verticals = [
-  { name: "Corporate & Enterprise" },
-  { name: "Healthcare & Hospitals" },
-  { name: "Education & Universities" },
-  { name: "Hospitality & Hotels" },
-  { name: "Manufacturing & Industrial" },
-  { name: "Government & Public Sector" },
-  { name: "Ports & Logistics" },
-  { name: "Real Estate & Construction" },
+  { name: "Corporate & Enterprise", icon: Building2 },
+  { name: "Healthcare & Hospitals", icon: Hospital },
+  { name: "Education & Universities", icon: GraduationCap },
+  { name: "Hospitality & Hotels", icon: Hotel },
+  { name: "Manufacturing & Industrial", icon: Factory },
+  { name: "Government & Public Sector", icon: Landmark },
+  { name: "Ports & Logistics", icon: Ship },
+  { name: "Real Estate & Construction", icon: HardHat },
 ];
 
 export function Verticals() {
@@ -85,8 +95,9 @@ export function Verticals() {
                 }}
               >
                 <div
-                  className="min-w-[20px]"
+                  className="min-w-[20px] flex items-center justify-center"
                 >
+                  <v.icon size={18} className="text-[var(--orange)] opacity-50 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
                 </div>
                 <div 
                   className="w-[20px] h-[1px] flex-shrink-0 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"

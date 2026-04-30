@@ -55,7 +55,7 @@ export function About() {
             style={{ fontSize: "15px", color: "var(--mid)" }}
           >
             <p className="m-0">
-              Founded in 2004, Aditya Technology Partners (ATP) began with a clear mission: 
+              Founded in 2012, Aditya Technology Partners (ATP) began with a clear mission: 
               to simplify the complex world of enterprise IT infrastructure. What started as a 
               small team of network engineers has grown into a trusted technology partner for 
               some of India's most prominent organizations.
@@ -189,7 +189,7 @@ export function About() {
                 marginBottom: "12px",
               }}
             >
-              Since 2006
+              Since 2012
             </div>
             <div
               style={{
@@ -200,7 +200,7 @@ export function About() {
                 lineHeight: 1,
               }}
             >
-              29 Years of experience. Zero Compromises.
+              14 Years of experience. Zero Compromises.
             </div>
           </div>
         </div>

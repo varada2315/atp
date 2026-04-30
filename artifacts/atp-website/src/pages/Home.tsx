@@ -7,12 +7,10 @@ import { Verticals } from "@/components/sections/Verticals";
 import { Clients } from "@/components/sections/Clients";
 import { Partners } from "@/components/sections/Partners";
 import { Contact } from "@/components/sections/Contact";
-import { CustomCursor } from "@/components/CustomCursor";
 
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

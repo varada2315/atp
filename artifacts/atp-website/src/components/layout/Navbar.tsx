@@ -24,7 +24,7 @@ export function Navbar() {
         <img
           src="/WhatsApp_Image_2026-04-11_at_5.33.01_PM-removebg-preview.png"
           alt="Aditya Technology Partners Logo"
-          className="w-[272px] h-[272px] flex-shrink-0"
+          className="h-[48px] w-auto flex-shrink-0 object-contain"
         />
       </Link>
       
@@ -38,7 +38,6 @@ export function Navbar() {
                 fontFamily: "'JetBrains Mono', monospace",
                 color: "var(--dim)",
                 letterSpacing: "1px",
-                cursor: "none",
               }}
             >
               {item}
@@ -52,7 +51,7 @@ export function Navbar() {
       </ul>
 
       <button
-        className="border-none px-[22px] py-[9px] cursor-none font-medium transition-opacity duration-200 hover:opacity-85"
+        className="border-none px-[22px] py-[9px] font-medium transition-opacity duration-200 hover:opacity-85"
         style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: "11px",
